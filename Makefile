@@ -1,4 +1,4 @@
-CC = /usr/bin/gcc
+CC = gcc
 CFLAGS = -O3 -Wall -Wextra
 AS = $(CC) $(CFLAGS) -c
 
