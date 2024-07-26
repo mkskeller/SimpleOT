@@ -1,3 +1,4 @@
+#ifdef NO_SODIUM
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -32,3 +33,11 @@ void simpleot_randombytes(unsigned char *x,unsigned long long xlen)
     xlen -= i;
   }
 }
+#else
+#include <sodium.h>
+
+void simpleot_randombytes(unsigned char *x,unsigned long long xlen)
+{
+  randombytes(x, xlen);
+}
+#endif

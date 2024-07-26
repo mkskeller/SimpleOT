@@ -2,6 +2,9 @@ CC = gcc
 CFLAGS = -O3 -Wall -Wextra
 AS = $(CC) $(CFLAGS) -c
 
+# if removing this, add -DNO_SODIUM to CFLAGS
+LDFLAGS = -lsodium
+
 OBJS+= Keccak-simple.o
 OBJS+= randombytes.o
 OBJS+= cpucycles.o
@@ -71,13 +74,13 @@ OBJS+= consts4x.o
 all: ot_sender_test ot_receiver_test libsimpleot
 
 libsimpleot: $(OBJS)
-	$(AR) -crs libsimpleot.a $(OBJS)
+	$(AR) -crs libsimpleot.a $(OBJS) $(LDFLAGS)
 
 ot_sender_test: ot_sender_test.o $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ 
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 ot_receiver_test: ot_receiver_test.o $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ 
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c 
 	$(CC) $(CFLAGS) -c $<
