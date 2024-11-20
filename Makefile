@@ -74,7 +74,7 @@ OBJS+= consts4x.o
 all: ot_sender_test ot_receiver_test libsimpleot
 
 libsimpleot: $(OBJS)
-	$(AR) -crs libsimpleot.a $(OBJS) $(LDFLAGS)
+	$(AR) -crs libsimpleot.a $(OBJS)
 
 ot_sender_test: ot_sender_test.o $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
