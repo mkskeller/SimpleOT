@@ -4,6 +4,7 @@ AS = $(CC) $(CFLAGS) -c
 
 # if removing this, add -DNO_SODIUM to CFLAGS
 LDFLAGS = -lsodium
+LDFLAGS += -z noexecstack
 
 OBJS+= Keccak-simple.o
 OBJS+= randombytes.o
